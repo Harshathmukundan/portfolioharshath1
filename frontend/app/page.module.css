@@ -1,0 +1,32 @@
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+.divider {
+  height: 0.5px;
+  background: var(--border);
+  margin: 0 0 4rem;
+}
+
+.error {
+  max-width: 500px;
+  margin: 6rem auto;
+  text-align: center;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.error code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--surface);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--border);
+  color: var(--accent);
+}

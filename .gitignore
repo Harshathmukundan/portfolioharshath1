@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+.npm
+
+# Env files (keep secrets out of git)
+.env
+.env.local
+.env.production
+
+# Next.js build output
+frontend/.next/
+frontend/out/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
