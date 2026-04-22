@@ -1,4 +1,4 @@
-import { portfolioApi } from "@/lib/api";
+import portfolio from "@/lib/portfolioData";
 import ExperienceSection from "@/components/sections/ExperienceSection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import CertsSection from "@/components/sections/CertsSection";
@@ -6,9 +6,8 @@ import styles from "./about.module.css";
 
 export const metadata = { title: "About — Harshath Mukundan" };
 
-export default async function AboutPage() {
-  const data = await portfolioApi.getAll();
-  const { profile, skills, experience, certifications } = data;
+export default function AboutPage() {
+  const { profile, skills, experience, certifications } = portfolio;
 
   return (
     <div className={styles.page}>

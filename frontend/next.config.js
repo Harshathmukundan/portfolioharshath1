@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",          // Static HTML export
+  basePath: "/portfolioharshath1",   // GitHub Pages repo name
+  assetPrefix: "/portfolioharshath1/",
   reactStrictMode: true,
-  env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000",
+  images: {
+    unoptimized: true,       // Required for static export
   },
 };
 

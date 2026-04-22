@@ -1,9 +1,7 @@
 "use client";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { portfolioApi } from "@/lib/api";
 import styles from "./contact.module.css";
 
 const schema = z.object({
@@ -15,35 +13,20 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-type Status = "idle" | "loading" | "success" | "error";
-
 export default function ContactPage() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [serverMsg, setServerMsg] = useState("");
-
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (data: FormData) => {
-    setStatus("loading");
-    try {
-      const res = await portfolioApi.sendContact(data);
-      if (res.success) {
-        setStatus("success");
-        setServerMsg(res.message);
-        reset();
-      } else {
-        setStatus("error");
-        setServerMsg("Something went wrong. Please try again.");
-      }
-    } catch {
-      setStatus("error");
-      setServerMsg("Could not reach the server. Make sure the backend is running.");
-    }
+  const onSubmit = (data: FormData) => {
+    const mailtoLink = `mailto:harshathmsg18@gmail.com?subject=${encodeURIComponent(
+      data.subject
+    )}&body=${encodeURIComponent(
+      `Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`
+    )}`;
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -135,19 +118,8 @@ export default function ContactPage() {
             {errors.message && <span className={styles.error}>{errors.message.message}</span>}
           </div>
 
-          {status === "success" && (
-            <div className={styles.successMsg}>{serverMsg}</div>
-          )}
-          {status === "error" && (
-            <div className={styles.errorMsg}>{serverMsg}</div>
-          )}
-
-          <button
-            type="submit"
-            className={styles.submitBtn}
-            disabled={status === "loading"}
-          >
-            {status === "loading" ? "Sending..." : "Send Message →"}
+          <button type="submit" className={styles.submitBtn}>
+            Send Message →
           </button>
         </form>
       </div>

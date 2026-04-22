@@ -1,11 +1,10 @@
-import { portfolioApi } from "@/lib/api";
+import portfolio from "@/lib/portfolioData";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import styles from "./projects.module.css";
 
 export const metadata = { title: "Projects — Harshath Mukundan" };
 
-export default async function ProjectsPage() {
-  const projects = await portfolioApi.getProjects();
+export default function ProjectsPage() {
   return (
     <div className={styles.page}>
       <div className={styles.pageHeader}>
@@ -15,7 +14,7 @@ export default async function ProjectsPage() {
           Full-stack systems, deep learning pipelines, and AI-powered applications.
         </p>
       </div>
-      <ProjectsSection projects={projects} />
+      <ProjectsSection projects={portfolio.projects} />
     </div>
   );
 }
